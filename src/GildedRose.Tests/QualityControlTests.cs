@@ -1,4 +1,5 @@
-﻿namespace GildedRose.Tests
+﻿// ReSharper disable InconsistentNaming
+namespace GildedRose.Tests
 {
     using System.Collections.Generic;
 
@@ -127,7 +128,7 @@
     {
         public GivenSulfuras()
         {
-            SetupItem("Sulfuras, Hand of Ragnaros", 10, 10);
+            SetupItem("Sulfuras, Hand of Ragnaros", 80, 10);
         }
 
         [Fact]
@@ -135,7 +136,7 @@
         {
             this.QualityControl.UpdateQuality(Items);
 
-            Assert.Equal(10, Item.Quality);
+            Assert.Equal(80, Item.Quality);
         }
 
         [Fact]
@@ -144,7 +145,7 @@
             this.Item.SellIn = -1;
             this.QualityControl.UpdateQuality(Items);
 
-            Assert.Equal(10, Item.Quality);
+            Assert.Equal(80, Item.Quality);
         }
 
         [Fact]
@@ -152,7 +153,7 @@
         {
             this.QualityControl.UpdateQuality(Items);
 
-            Assert.Equal(10, Item.Quality);
+            Assert.Equal(10, Item.SellIn);
         }
     }
 
