@@ -5,29 +5,24 @@
 
     using Item = Program.Item;
 
-    //public class MyItem : Item
-    //{
-    //    public MyItem(Item item)
-    //    {
-    //        this.Name = item.Name;
-    //        this.Quality = item.Quality;
-    //        this.SellIn = item.SellIn;
-    //    }
-
-    //    public virtual void UpdateQuality()
-    //    {
-    //        if (this.SellIn <)
-    //    }
-    //}
-
     public class QualityControl
     {
         public void UpdateQuality(IList<Item> items)
         {
             foreach (Item item in items)
             {
-                UpdateQuality(item);
-                UpdateSellIn(item);
+                var myItem = ItemUpdater.Create(item);
+                if (myItem == null)
+                {
+                    // Handle special cases
+                    UpdateQuality(item);
+                    UpdateSellIn(item);
+                }
+                else
+                {
+                    // Handler normal case
+                    myItem.UpdateQuality();
+                }
             }
         }
 
@@ -41,44 +36,28 @@
 
                     if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
                     {
-                        if (item.SellIn < 11)
+                        if (item.SellIn < 11 && item.Quality < 50)
                         {
-                            if (item.Quality < 50)
-                            {
-                                item.Quality = item.Quality + 1;
-                            }
+                            item.Quality = item.Quality + 1;
                         }
 
-                        if (item.SellIn < 6)
+                        if (item.SellIn < 6 && item.Quality < 50)
                         {
-                            if (item.Quality < 50)
-                            {
-                                item.Quality = item.Quality + 1;
-                            }
+                            item.Quality = item.Quality + 1;
                         }
                     }
                 }
             }
-            else
+            else if (item.Quality > 0)
             {
-                if (item.Quality > 0)
-                {
-                    if (item.Name != "Sulfuras, Hand of Ragnaros")
-                    {
-                        item.Quality = item.Quality - 1;
-                    }
-                }
+                // The Quality of an item is never negative
+                item.Quality = item.Quality - 1;
             }
+
         }
 
         private static void UpdateSellIn(Item item)
         {
-            if (item.Name == "Sulfuras, Hand of Ragnaros")
-            {
-                // "Sulfuras", being a legendary item, never has to be sold or decreases in Quality
-                return;
-            }
-            
             item.SellIn = item.SellIn - 1;
 
             if (item.SellIn < 0)
