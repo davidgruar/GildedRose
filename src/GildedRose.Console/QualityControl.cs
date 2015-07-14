@@ -28,29 +28,20 @@
 
         private static void UpdateQuality(Item item)
         {
-            if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
+            if (item.Quality < 50)
             {
-                if (item.Quality < 50)
+                item.Quality = item.Quality + 1;
+
+                if (item.SellIn < 11 && item.Quality < 50)
                 {
                     item.Quality = item.Quality + 1;
-                    
-                    if (item.SellIn < 11 && item.Quality < 50)
-                    {
-                        item.Quality = item.Quality + 1;
-                    }
+                }
 
-                    if (item.SellIn < 6 && item.Quality < 50)
-                    {
-                        item.Quality = item.Quality + 1;
-                    }
+                if (item.SellIn < 6 && item.Quality < 50)
+                {
+                    item.Quality = item.Quality + 1;
                 }
             }
-            else if (item.Quality > 0)
-            {
-                // The Quality of an item is never negative
-                item.Quality = item.Quality - 1;
-            }
-
         }
 
         private static void UpdateSellIn(Item item)
@@ -59,17 +50,8 @@
 
             if (item.SellIn < 0)
             {
-                if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
-                {
-                    // Quality drops to 0 after the concert
-                    item.Quality = 0;
-                }
-                else if (item.Quality > 0)
-                {
-                    // Once the sell by date has passed, Quality degrades twice as fast
-                    // The Quality of an item is never negative
-                    item.Quality = item.Quality - 1;
-                }
+                // Quality drops to 0 after the concert
+                item.Quality = 0;
             }
         }
     }
