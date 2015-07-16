@@ -9,9 +9,19 @@
             this.Item = item;
         }
 
-        public virtual void UpdateQuality()
+        public void Update()
+        {
+            this.UpdateSellIn();
+            this.UpdateQuality();
+        }
+
+        protected virtual void UpdateSellIn()
         {
             this.Item.SellIn--;
+        }
+
+        protected virtual void UpdateQuality()
+        {
             if (this.Item.Quality > 0)
             {
                 var qualityDecrease = this.Item.SellIn > 0 ? 1 : 2;

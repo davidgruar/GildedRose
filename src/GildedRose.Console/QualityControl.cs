@@ -12,7 +12,7 @@
             foreach (Item item in items)
             {
                 var updater = ItemUpdater.Create(item);
-                updater.UpdateQuality();
+                updater.Update();
             }
         }
     }

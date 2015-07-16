@@ -183,7 +183,7 @@ namespace GildedRose.Tests
         }
 
         [Fact]
-        public void WhenSellInIsBetween10And5_ShouldIncreaseQualityBy2()
+        public void WhenSellInIsBetween10And6_ShouldIncreaseQualityBy2()
         {
             this.Item.SellIn = 10;
             this.QualityControl.UpdateQuality(Items);
@@ -197,7 +197,7 @@ namespace GildedRose.Tests
         }
 
         [Fact]
-        public void WhenSellInIsLessThan5_ShouldIncreaseQualityBy3()
+        public void WhenSellInIs5OrLess_ShouldIncreaseQualityBy3()
         {
             this.Item.SellIn = 5;
             this.QualityControl.UpdateQuality(Items);
@@ -208,6 +208,17 @@ namespace GildedRose.Tests
 
             Assert.Equal(0, Item.SellIn);
             Assert.Equal(25, Item.Quality);
+        }
+
+        [Fact]
+        public void WhenSellInIs5OrLessAndQualityIs48_ShouldOnlyIncreaseQualityBy2()
+        {
+            this.Item.SellIn = 5;
+            this.Item.Quality = 48;
+            this.QualityControl.UpdateQuality(Items);
+            
+            Assert.Equal(4, Item.SellIn);
+            Assert.Equal(50, Item.Quality);
         }
 
         [Fact]

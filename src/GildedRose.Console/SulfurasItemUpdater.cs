@@ -7,9 +7,14 @@ namespace GildedRose.Console
         {
         }
 
-        public override void UpdateQuality()
+        protected override void UpdateSellIn()
         {
-            // "Sulfuras", being a legendary item, never has to be sold or decreases in Quality
+            // "Sulfuras", being a legendary item, never has to be sold...
+        }
+
+        protected override void UpdateQuality()
+        {
+            // ...or decreases in Quality
         }
     }
 }

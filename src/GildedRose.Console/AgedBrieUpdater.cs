@@ -7,10 +7,8 @@
         {
         }
 
-        public override void UpdateQuality()
+        protected override void UpdateQuality()
         {
-            this.Item.SellIn--;
-
             // The Quality of an item is never more than 50
             if (this.Item.Quality < 50)
             {
