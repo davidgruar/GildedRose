@@ -91,7 +91,7 @@ namespace GildedRose.Tests
         }
 
         [Fact]
-        public void UpdateQuality_ShouldDecreaseSelInBy1()
+        public void UpdateQuality_ShouldDecreaseSellInBy1()
         {
             this.QualityControl.UpdateQuality(Items);
 
@@ -238,6 +238,49 @@ namespace GildedRose.Tests
             this.QualityControl.UpdateQuality(Items);
 
             Assert.Equal(50, Item.Quality);
+        }
+    }
+
+    public class GivenAConjuredItem : TestBase
+    {
+        public GivenAConjuredItem()
+        {
+            this.SetupItem("Conjured Mana Cake", 10, 10);
+        }
+
+        [Fact]
+        public void WhenSellInIsPositive_ShouldDecreaseQualityBy2()
+        {
+            this.QualityControl.UpdateQuality(Items);
+
+            Assert.Equal(8, Item.Quality);
+        }
+
+        [Fact]
+        public void WhenSellInIsZero_ShouldDecreaseQualityBy4()
+        {
+            this.Item.SellIn = 0;
+            this.QualityControl.UpdateQuality(Items);
+
+            Assert.Equal(6, Item.Quality);
+        }
+
+        [Fact]
+        public void WhenQualityIsZero_ShouldNotAlterQuality()
+        {
+            this.Item.Quality = 0;
+            this.QualityControl.UpdateQuality(Items);
+
+            Assert.Equal(0, Item.Quality);
+        }
+
+        [Fact]
+        public void WhenQualityIs1_ShouldSetQualityTo0()
+        {
+            this.Item.Quality = 0;
+            this.QualityControl.UpdateQuality(Items);
+
+            Assert.Equal(0, Item.Quality);
         }
     }
 }

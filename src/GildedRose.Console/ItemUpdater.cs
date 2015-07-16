@@ -39,9 +39,10 @@
                     return new AgedBrieUpdater(item);
                 case "Backstage passes to a TAFKAL80ETC concert":
                     return new BackstagePassUpdater(item);
-                    return null;
                 case "Sulfuras, Hand of Ragnaros":
                     return new SulfurasItemUpdater(item);
+                case "Conjured Mana Cake":
+                    return new ConjuredItemUpdater(item);
                 default:
                     return new ItemUpdater(item);
             }

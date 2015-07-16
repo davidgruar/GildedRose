@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="AgedBrieUpdater.cs" />
     <Compile Include="BackstagePassUpdater.cs" />
+    <Compile Include="ConjuredItemUpdater.cs" />
     <Compile Include="IItem.cs" />
     <Compile Include="ItemUpdater.cs" />
     <Compile Include="Program.cs" />
