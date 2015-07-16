@@ -122,6 +122,14 @@ namespace GildedRose.Tests
 
             Assert.Equal(50, Item.Quality);
         }
+
+        [Fact]
+        public void UpdateQuality_ShouldDecreaseSelInBy1()
+        {
+            this.QualityControl.UpdateQuality(Items);
+
+            Assert.Equal(9, Item.SellIn);
+        }
     }
 
     public class GivenSulfuras : TestBase
@@ -210,6 +218,15 @@ namespace GildedRose.Tests
 
             Assert.Equal(-1, Item.SellIn);
             Assert.Equal(0, Item.Quality);
+        }
+
+        [Fact]
+        public void WhenQualityIs50_ShouldNotIncreaseQuality()
+        {
+            this.Item.Quality = 50;
+            this.QualityControl.UpdateQuality(Items);
+
+            Assert.Equal(50, Item.Quality);
         }
     }
 }
