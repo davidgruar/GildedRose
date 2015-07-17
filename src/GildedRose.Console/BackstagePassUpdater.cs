@@ -32,8 +32,6 @@
 
                 this.Item.Quality = Math.Min(this.Item.Quality, 50);
             }
-
-            
         }
     }
 }
